@@ -1,4 +1,5 @@
 # Logs
+.DS_Store
 logs
 *.log
 npm-debug.log*
@@ -39,7 +40,7 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+frontend/password-generator-manager/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -128,3 +129,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Other folders
+.idea/
+backend/.idea/
+backend/.mvn
+backend/HELP.md
+backend/target/
+backend/src/main/resources/
+backend/src/test/
+

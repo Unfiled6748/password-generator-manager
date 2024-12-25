@@ -24,9 +24,12 @@
     "vite": "^4.1.1"
   },
   "dependencies": {
+    "axios": "^1.7.9",
     "dexie": "^3.2.4",
     "dexie-react-hooks": "^1.1.6",
+    "mdb-react-ui-kit": "^9.0.0",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.9.0"
+    "react-icons": "^4.9.0",
+    "react-router-dom": "^7.1.0"
   }
 }
