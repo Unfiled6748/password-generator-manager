@@ -1,20 +1,24 @@
-import React, { useState } from "react";
-import { SlRefresh } from "react-icons/sl";
-import { AiOutlineCopy, AiOutlineSave } from "react-icons/ai";
-import toast, { Toaster } from "react-hot-toast";
-import { addPassword } from "./db";
-import TableComponent from "./TableComponent";
-import { generateRandomPassword, isValidUrl } from "./utils";
+import React, { useState } from "react"
+import { SlRefresh } from "react-icons/sl"
+import { AiOutlineCopy, AiOutlineSave } from "react-icons/ai"
+import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from './auth'
+import { addPassword } from "./db"
+import TableComponent from "./TableComponent"
+import { generateRandomPassword, isValidUrl } from "./utils"
 
 const MainPage = () => {
+  const auth = useAuth()
+  const navigate = useNavigate()
   const [password, setPassword] = useState("");
   const [website, setWebsite] = useState("");
   const [length, setLength] = useState(8);
 
-  // const generatePassword = () => {
-  //   const randomPassword = Math.random().toString(36).slice(-8);
-  //   setPassword(randomPassword);
-  // };
+ const handleLogout = () => {
+    auth.logout()
+    navigate('/login')
+  }
 
   const generatePassword = () => {
     if (length > 3 && length < 21) {
@@ -53,9 +57,33 @@ const MainPage = () => {
         }}
       />
       <div>
+{/*
+        <div class="flex justify-end p-4">
+        <button
+          className="inline-flex items-center rounded-md bg-teal-900 px-2 py-4 my-4 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
+          title="logout-button"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+        </div>
         <h1 className="text-center text-4xl font-bold text-teal-800">
           Password Generator
         </h1>
+*/}
+        <div class="flex justify-between items-center py-4">
+          <h1 class="text-4xl font-bold text-teal-800">
+              Password Generator
+          </h1>
+          <button
+              className="inline-flex items-center rounded-md bg-teal-900 px-2 py-2 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
+              title="logout-button"
+              onClick={handleLogout}
+          >
+              Logout
+          </button>
+      </div>
+
         <input
           className="w-40 rounded-md border-2 border-teal-700 mr-2 px-3.5 py-4 text-slate-900 shadow-sm"
           placeholder="Length:"
