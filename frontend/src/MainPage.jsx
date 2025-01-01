@@ -1,49 +1,55 @@
-import React, { useState } from "react"
-import { SlRefresh } from "react-icons/sl"
-import { AiOutlineCopy, AiOutlineSave } from "react-icons/ai"
-import toast, { Toaster } from "react-hot-toast"
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from './auth'
-import { addPassword } from "./db"
-import TableComponent from "./TableComponent"
-import { generateRandomPassword, isValidUrl } from "./utils"
+import React, { useState } from 'react';
+import { SlRefresh } from 'react-icons/sl';
+import { AiOutlineCopy, AiOutlineSave } from 'react-icons/ai';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './auth';
+import { addPassword } from './db';
+import TableComponent from './TableComponent';
+import { generateRandomPassword, isValidUrl } from './utils';
 import { request, setAuthHeader } from './axios_helper';
 
 const MainPage = () => {
-  const auth = useAuth()
-  const navigate = useNavigate()
-  const redirectPath = location.state?.path || '/login'
-  const [password, setPassword] = useState("");
-  const [website, setWebsite] = useState("");
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const redirectPath = location.state?.path || '/login';
+  const [password, setPassword] = useState('');
+  const [website, setWebsite] = useState('');
   const [length, setLength] = useState(8);
 
- const handleLogout = () => {
-    auth.logout()
-    navigate('/login')
-  }
+  const handleLogout = () => {
+    auth.logout();
+    navigate('/login');
+  };
 
   const generatePassword = async () => {
     if (length < 4 || length > 20) {
-      toast("Password should be minimum 4 & maximum 20 characters");
+      toast('Password should be minimum 4 & maximum 20 characters');
       return;
     }
     //const randomPassword = generateRandomPassword(length);
     //setPassword(randomPassword);
     try {
-      const response = await request('GET', `/generatedPasswords/new?length=${length}`, {});
+      const response = await request(
+        'GET',
+        `/generatedPasswords/new?length=${length}`,
+        {},
+      );
       //console.log('Password generation successful:', response.data);
       console.log('Password generation successful');
       setPassword(response.data);
     } catch (error) {
-      console.error('Password generation failed:', error.response ? error.response.data : error.message);
+      console.error(
+        'Password generation failed:',
+        error.response ? error.response.data : error.message,
+      );
       if (error.response && error.response.status === 401) {
         setAuthHeader(null);
         navigate(redirectPath, { replace: true });
       } else {
-        const errorMessage = error.response ? 
-        `Server responded with status ${error.response.status}: ${error.response.statusText}` 
-        : 
-        `There was an error: ${error.message}`;
+        const errorMessage = error.response
+          ? `Server responded with status ${error.response.status}: ${error.response.statusText}`
+          : `There was an error: ${error.message}`;
         toast(errorMessage);
       }
     }
@@ -51,16 +57,16 @@ const MainPage = () => {
 
   const copyPassword = () => {
     navigator.clipboard.writeText(password);
-    toast("Password Copied to clipboard");
+    toast('Password Copied to clipboard');
   };
 
   const savePassword = async () => {
     if (isValidUrl(website)) {
-      console.log("Website:", website, "Password:", password);
+      console.log('Website:', website, 'Password:', password);
       addPassword(website, password);
-      toast("Password saved successfully");
+      toast('Password saved successfully');
     } else {
-      toast("Enter valid URL");
+      toast('Enter valid URL');
     }
   };
 
@@ -68,16 +74,16 @@ const MainPage = () => {
     <div className="max-w-5xl px-4 mx-auto my-4 pt-4">
       <Toaster
         toastOptions={{
-          className: "bg-cyan-800 text-cyan-100",
+          className: 'bg-cyan-800 text-cyan-100',
           duration: 1000,
           style: {
-            background: "#083344",
-            color: "#cffafe",
+            background: '#083344',
+            color: '#cffafe',
           },
         }}
       />
       <div>
-{/*
+        {/*
         <div className="flex justify-end p-4">
         <button
           className="inline-flex items-center rounded-md bg-teal-900 px-2 py-4 my-4 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
@@ -93,16 +99,16 @@ const MainPage = () => {
 */}
         <div className="flex justify-between items-center py-4">
           <h1 className="text-4xl font-bold text-teal-800">
-              Password Generator
+            Password Generator
           </h1>
           <button
-              className="inline-flex items-center rounded-md bg-teal-900 px-2 py-2 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
-              title="logout-button"
-              onClick={handleLogout}
+            className="inline-flex items-center rounded-md bg-teal-900 px-2 py-2 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
+            title="logout-button"
+            onClick={handleLogout}
           >
-              Logout
+            Logout
           </button>
-      </div>
+        </div>
 
         <input
           className="w-40 rounded-md border-2 border-teal-700 mr-2 px-3.5 py-4 text-slate-900 shadow-sm"
@@ -130,11 +136,7 @@ const MainPage = () => {
             value={password}
             readOnly
           />
-          <button
-            className="ml-4"
-            title="copy-button"
-            onClick={copyPassword}
-          >
+          <button className="ml-4" title="copy-button" onClick={copyPassword}>
             <AiOutlineCopy
               size={32}
               className="text-teal-900 hover:text-blue-600"

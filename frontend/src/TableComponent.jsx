@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { usePasswords } from "./db";
+import React, { useState } from 'react';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { usePasswords } from './db';
 
 const TableComponent = () => {
   const passwords = usePasswords();
@@ -9,7 +9,7 @@ const TableComponent = () => {
   const togglePasswordVisibility = (id) => {
     if (visiblePasswords.includes(id)) {
       setVisiblePasswords(
-        visiblePasswords.filter((visibleId) => visibleId !== id)
+        visiblePasswords.filter((visibleId) => visibleId !== id),
       );
     } else {
       setVisiblePasswords([...visiblePasswords, id]);
@@ -66,14 +66,14 @@ const TableComponent = () => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 {Intl.DateTimeFormat(navigator.language, {
-                   year: 'numeric',
-                   month: '2-digit',
-                   day: '2-digit',
-                   hour: 'numeric',
-                   minute: 'numeric',
-                   second: 'numeric',
-                   hour12: false,
-                   timeZoneName: 'short'
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  second: 'numeric',
+                  hour12: false,
+                  timeZoneName: 'short',
                 }).format(new Date(password.createdOn))}
               </td>
             </tr>

@@ -1,34 +1,34 @@
 // Function to generate a random password
 export function generateRandomPassword(length) {
   const words = [
-    "Abyssinian",
-    "American Bobtail",
-    "American Curl",
-    "American Shorthair",
-    "American Wirehair",
-    "Balinese",
-    "Bengal",
-    "Fiesta",
-    "Focus",
-    "Taurus",
-    "Mustang",
-    "Explorer",
-    "Expedition",
-    "F-150",
-    "Model T",
-    "Ranchero",
-    "Volt",
-    "Cruze",
-    "Malibu",
-    "Impala",
-    "Camaro",
-    "Corvette",
-    "Colorado",
-    "Silverado",
+    'Abyssinian',
+    'American Bobtail',
+    'American Curl',
+    'American Shorthair',
+    'American Wirehair',
+    'Balinese',
+    'Bengal',
+    'Fiesta',
+    'Focus',
+    'Taurus',
+    'Mustang',
+    'Explorer',
+    'Expedition',
+    'F-150',
+    'Model T',
+    'Ranchero',
+    'Volt',
+    'Cruze',
+    'Malibu',
+    'Impala',
+    'Camaro',
+    'Corvette',
+    'Colorado',
+    'Silverado',
   ];
-  const specialCharacters = ["!", "@", "#", "$", "%", "&", "*"];
+  const specialCharacters = ['!', '@', '#', '$', '%', '&', '*'];
 
-  let password = "";
+  let password = '';
 
   // Generate a random word from the words array
   const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -45,14 +45,14 @@ export function generateRandomPassword(length) {
 
   // Generate the remaining characters
   const remainingLength = length - 3;
-  const characters = words.join("") + randomNumber + specialCharacters.join("");
+  const characters = words.join('') + randomNumber + specialCharacters.join('');
   for (let i = 0; i < remainingLength; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
     password += characters[randomIndex];
   }
 
   // Remove whitespace, if any
-  password = password.replace(/ +/g, "");
+  password = password.replace(/ +/g, '');
 
   // Shuffle the password characters
   let shuffledPassword = shuffleString(password);
@@ -74,16 +74,16 @@ export function generateRandomPassword(length) {
 // Function to shuffle the characters of a string
 function shuffleString(string) {
   // Variable to hold the shuffled string
-  let shuffledString = "";
+  let shuffledString = '';
 
   // Convert the string to an array of characters
-  string = string.split("");
+  string = string.split('');
 
   // Shuffle the characters using Fisher-Yates algorithm
   while (string.length > 0) {
     shuffledString += string.splice(
       Math.floor(Math.random() * string.length),
-      1
+      1,
     );
   }
 
@@ -95,8 +95,9 @@ function shuffleString(string) {
 // const urlPattern = /^(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\/\S*)?$/;
 
 // URL Pattern to accomodate ghw.mlh.io
-const urlPattern = /^(?:https?:\/\/)?(?:www\.)?(?:[a-zA-Z0-9-]+\.)+(?:com|io|ghw\.mlh\.io)(?:\/\S*)?$/;
+const urlPattern =
+  /^(?:https?:\/\/)?(?:www\.)?(?:[a-zA-Z0-9-]+\.)+(?:com|io|ghw\.mlh\.io)(?:\/\S*)?$/;
 
 export function isValidUrl(url) {
   return urlPattern.test(url);
-};
+}
