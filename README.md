@@ -24,7 +24,7 @@ My contributions were to:
 2. Go to the `frontend` directory, and run:
 `npm install`
 `npm run dev`
-(Note: You may need to run `npm audi`t after `npm install`.)
+(Note: You may need to run `npm audit` after `npm install`.)
 This will start the frontend.
 3. Create an `backend/src/main/resources/application.properties` file.
 5. Insert the following, and replace the placeholders with your values:
@@ -66,7 +66,7 @@ This will start the backend.
 - Enable TLS
 - Store JWT tokens in HTTPOnly cookies so client-side Javascript cannot access them
 - Move the addPassword and savePassword functionality from the frontend to the backend as REST endpoints
-- Replace IndexDB with PostgreSQL in the backend for stroing user's generated passwords
+- Replace IndexDB with PostgreSQL in the backend for storing user's generated passwords
 - Add Open ID Connect-based authentication (e.g.; 'Sign in via Google')
 - Allow users to delete a generated password
 
