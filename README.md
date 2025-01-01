@@ -65,14 +65,14 @@ This will start the backend.
 ## Future Updates
 - Enable TLS
 - Store JWT tokens in HTTPOnly cookies so client-side Javascript cannot access them
-- Move the addPassword and savePassword functionality from the frontend to the backend
+- Move the addPassword and savePassword functionality from the frontend to the backend as REST endpoints
 - Replace IndexDB with PostgreSQL in the backend for stroing user's generated passwords
 - Add Open ID Connect-based authentication (e.g.; 'Sign in via Google')
+- Allow users to delete a generated password
 
 
 
 ## License
 
 BSD 3-Clause License
-
 
