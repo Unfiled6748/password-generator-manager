@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from './auth'
 import axios from 'axios';
+import { request, setAuthHeader } from './axios_helper';
 import { useNavigate, useLocation} from 'react-router-dom';
 import {
     MDBContainer,
@@ -27,10 +28,12 @@ const LoginPage = () => {
 
             const response = await axios.post('http://localhost:8080/login', { username, password });
             console.log('Login successful:', response.data);
-            auth.login(user)
-            navigate(redirectPath, { replace: true })
+            setAuthHeader(response.data.token);
+            auth.login(user);
+            navigate(redirectPath, { replace: true });
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);
+            setAuthHeader(null);
             setError('Invalid username or password.');
         }
     };

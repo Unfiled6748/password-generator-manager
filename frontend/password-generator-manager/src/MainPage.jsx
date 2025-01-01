@@ -7,10 +7,12 @@ import { useAuth } from './auth'
 import { addPassword } from "./db"
 import TableComponent from "./TableComponent"
 import { generateRandomPassword, isValidUrl } from "./utils"
+import { request, setAuthHeader } from './axios_helper';
 
 const MainPage = () => {
   const auth = useAuth()
   const navigate = useNavigate()
+  const redirectPath = location.state?.path || '/login'
   const [password, setPassword] = useState("");
   const [website, setWebsite] = useState("");
   const [length, setLength] = useState(8);
@@ -20,12 +22,30 @@ const MainPage = () => {
     navigate('/login')
   }
 
-  const generatePassword = () => {
-    if (length > 3 && length < 21) {
-      const randomPassword = generateRandomPassword(length);
-      setPassword(randomPassword);
-    } else {
+  const generatePassword = async () => {
+    if (length < 4 || length > 20) {
       toast("Password should be minimum 4 & maximum 20 characters");
+      return;
+    }
+    //const randomPassword = generateRandomPassword(length);
+    //setPassword(randomPassword);
+    try {
+      const response = await request('GET', `/generatedPasswords/new?length=${length}`, {});
+      //console.log('Password generation successful:', response.data);
+      console.log('Password generation successful');
+      setPassword(response.data);
+    } catch (error) {
+      console.error('Password generation failed:', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 401) {
+        setAuthHeader(null);
+        navigate(redirectPath, { replace: true });
+      } else {
+        const errorMessage = error.response ? 
+        `Server responded with status ${error.response.status}: ${error.response.statusText}` 
+        : 
+        `There was an error: ${error.message}`;
+        toast(errorMessage);
+      }
     }
   };
 
@@ -58,7 +78,7 @@ const MainPage = () => {
       />
       <div>
 {/*
-        <div class="flex justify-end p-4">
+        <div className="flex justify-end p-4">
         <button
           className="inline-flex items-center rounded-md bg-teal-900 px-2 py-4 my-4 text-md text-teal-200 drop-shadow-xl hover:bg-teal-800"
           title="logout-button"
@@ -71,8 +91,8 @@ const MainPage = () => {
           Password Generator
         </h1>
 */}
-        <div class="flex justify-between items-center py-4">
-          <h1 class="text-4xl font-bold text-teal-800">
+        <div className="flex justify-between items-center py-4">
+          <h1 className="text-4xl font-bold text-teal-800">
               Password Generator
           </h1>
           <button

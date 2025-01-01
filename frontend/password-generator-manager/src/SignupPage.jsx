@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { request, setAuthHeader } from './axios_helper';
 import { useNavigate, useLocation} from 'react-router-dom'; 
 import { useAuth } from './auth'
 import {
@@ -41,11 +42,13 @@ const SignupPage = () => {
             });
             // Handle successful signup
             console.log(response.data);
+            setAuthHeader(response.data.token);
             auth.login(user)
             navigate(redirectPath, { replace: true })
         } catch (error) {
             // Handle signup error
             console.error('Signup failed:', error.response ? error.response.data : error.message);
+            setAuthHeader(null);
             setError(error.response ? error.response.data.message : error.message);
         }
     };
