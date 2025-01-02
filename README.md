@@ -20,7 +20,7 @@ My contributions were to:
 
 ## Installation
 1. Clone the repo: 
-`https://github.com/Unfiled6748/password-generator-manager.git`
+git@github.com:Unfiled6748/password-generator-manager.git
 2. Go to the `frontend` directory, and run:<br>
 `npm install`<br>
 `npm run dev`<br>
@@ -31,14 +31,6 @@ This will start the frontend.
 ```
 spring.application.name=backend
 security.jwt.token.secret-key: <insert-your-secret-key-here>
-# Session Management Configuration
-spring.security.filter.chain.content-negotiation.parameter-strategy=ignore
-spring.security.filter.chain.any-request.authorized=permitAll
-spring.security.filter.chain.request-matcher.path.pattern=/api/**
-spring.security.filter.chain.request-matcher.path.authenticated=true
-
-# CSRF Configuration
-spring.security.csrf.disabled=true
 # DataSource Configuration
 spring.datasource.platform=postgres
 spring.datasource.driver-class-name=org.postgresql.Driver
