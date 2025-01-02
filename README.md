@@ -1,10 +1,10 @@
-# Integrated Token-Based Authentication to a Password Generator
+# Integrating Token-Based Authentication into a Password Generator
 
 ## Description
 Integrated a React.js-based password generator manager with a Spring Security token-based authentication starter project, creating a full-stack application that requires users to authenticate using JSON Web Tokens (JWTs) in order to access the main page and /generatedPasswords/new REST endpoint.
 
 ## Credits and Contributions
-This project combines two applications written by other developers. The first is a password-generator-manager written in React.js:<br>
+This project combines two applications written by other developers. The first is a password generator manager written in React.js:<br>
 [https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager](https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager) by **Utkarsh Tiwari (utk09)**
 
 and the other is a Spring Security project that implements token-based authentication:<br>
@@ -32,6 +32,7 @@ This will start the frontend.
 ```
 spring.application.name=backend
 security.jwt.token.secret-key: <insert-your-secret-key-here>
+
 # DataSource Configuration
 spring.datasource.platform=postgres
 spring.datasource.driver-class-name=org.postgresql.Driver
@@ -60,8 +61,8 @@ This will start the backend.
 - Enable TLS
 - Store JWT tokens in HTTPOnly cookies so client-side Javascript cannot access them
 - Move the addPassword and savePassword functionality from the frontend to the backend as REST endpoints
-- Replace IndexDB with PostgreSQL in the backend for storing user's generated passwords
-- Add Open ID Connect-based authentication (e.g.; 'Sign in via Google')
+- Replace IndexDB with PostgreSQL in the backend for storing users' generated passwords
+- Add Open ID Connect-based (OIDC) authentication (e.g.; 'Sign in with Google')
 - Allow users to delete a generated password
 
 
