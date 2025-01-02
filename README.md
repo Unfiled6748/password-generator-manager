@@ -19,8 +19,8 @@ My contributions were to:
 <insert demo.mov here>
 
 ## Installation
-1. Clone the repo: 
-git@github.com:Unfiled6748/password-generator-manager.git
+1. Clone the repo:<br>
+`git@github.com:Unfiled6748/password-generator-manager.git`
 2. Go to the `frontend` directory, and run:<br>
 `npm install`<br>
 `npm run dev`<br>
@@ -50,6 +50,7 @@ spring.jpa.hibernate.ddl-auto=create
 (Note: You  do not need to create any tables. When the backend starts, an `app_user` table will automatically be created.)
 7. Go to the `backend` directory, and run `./mvnw spring-boot:run`.<br>
 This will start the backend.
+8. Congratulations! The application is up, and should be accessible at `localhost:5137`! 🎆🥳⭐
 
 
 ## Features
