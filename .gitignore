@@ -133,7 +133,6 @@ dist
 # Other folders
 .idea/
 backend/.idea/
-backend/.mvn
 backend/HELP.md
 backend/target/
 backend/src/main/resources/
