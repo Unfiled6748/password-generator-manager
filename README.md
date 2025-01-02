@@ -16,7 +16,8 @@ My contributions were to:
 3. Combine the React and Spring applications to create a full-stack application
 
 ## Demo
-<insert demo.mov here>
+Watch a demo [here on LinkedIn](https://www.linkedin.com/posts/activity-7279926592871522304-gpZd?utm_source=share&utm_medium=member_desktop) 
+
 
 ## Installation
 1. Clone the repo:<br>
