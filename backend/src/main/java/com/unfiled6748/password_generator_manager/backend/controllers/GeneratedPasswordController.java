@@ -15,8 +15,6 @@ import java.util.List;
 public class GeneratedPasswordController {
     @GetMapping("/generatedPasswords/new")
     public ResponseEntity<String> generatePassword(@RequestParam() int length) {
-        //public ResponseEntity<String> generatePassword() {
-        // int length = 12;
         List<CharacterRule> rules = Arrays.asList(
                 // at least one upper-case character
                 new CharacterRule(EnglishCharacterData.UpperCase, 1),
