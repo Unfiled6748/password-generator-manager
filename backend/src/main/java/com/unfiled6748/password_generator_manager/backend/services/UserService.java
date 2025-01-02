@@ -21,6 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+
     public UserDto findByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));

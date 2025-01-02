@@ -1,14 +1,14 @@
 # Integrated Token-Based Authentication to a Password Generator
 
 ## Description
-Integrated a React.js-based password generator manager with a Spring Security token-based authentication starter project, creating a full-stack application that requires users to authenticate using JSON Web Tokens (JWTs) in order to access the main page and /generatedPasswords/new REST endpoints.
+Integrated a React.js-based password generator manager with a Spring Security token-based authentication starter project, creating a full-stack application that requires users to authenticate using JSON Web Tokens (JWTs) in order to access the main page and /generatedPasswords/new REST endpoint.
 
 ## Credits and Contributions
 This project combines two applications written by other developers. The first is a password-generator-manager written in React.js:<br>
-[https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager](https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager) developed by **Utkarsh Tiwari (utk09)**
+[https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager](https://github.com/utk09/mlh-ghw-2023/tree/main/password-generator-manager) by **Utkarsh Tiwari (utk09)**
 
 and the other is a Spring Security project that implements token-based authentication:<br>
-[https://github.com/serlesen/fullstack-jwt/tree/chapter_1/backend](https://github.com/serlesen/fullstack-jwt/tree/chapter_1/backend) developed by **Sergio Lema (serlesen)**
+[https://github.com/serlesen/fullstack-jwt/tree/chapter_1/backend](https://github.com/serlesen/fullstack-jwt/tree/chapter_1/backend) by **Sergio Lema (serlesen)**
 
 My contributions were to: 
 1. Create a Login page

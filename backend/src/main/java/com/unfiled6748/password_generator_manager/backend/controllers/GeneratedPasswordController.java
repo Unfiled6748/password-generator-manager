@@ -15,17 +15,17 @@ import java.util.List;
 public class GeneratedPasswordController {
     @GetMapping("/generatedPasswords/new")
     public ResponseEntity<String> generatePassword(@RequestParam() int length) {
-    //public ResponseEntity<String> generatePassword() {
-       // int length = 12;
+        //public ResponseEntity<String> generatePassword() {
+        // int length = 12;
         List<CharacterRule> rules = Arrays.asList(
-        // at least one upper-case character
-        new CharacterRule(EnglishCharacterData.UpperCase, 1),
-        // at least one lower-case character
-        new CharacterRule(EnglishCharacterData.LowerCase, 1),
-        // at least one digit character
-        new CharacterRule(EnglishCharacterData.Digit, 1),
-        // at least one special character
-        new CharacterRule(EnglishCharacterData.SpecialAscii,1));
+                // at least one upper-case character
+                new CharacterRule(EnglishCharacterData.UpperCase, 1),
+                // at least one lower-case character
+                new CharacterRule(EnglishCharacterData.LowerCase, 1),
+                // at least one digit character
+                new CharacterRule(EnglishCharacterData.Digit, 1),
+                // at least one special character
+                new CharacterRule(EnglishCharacterData.SpecialAscii, 1));
         PasswordGenerator generator = new PasswordGenerator();
         String password = generator.generatePassword(length, rules);
         return ResponseEntity.ok(password);

@@ -10,8 +10,9 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.stereotype.Component;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
@@ -19,10 +20,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Component
 public class UserAuthProvider {
+    private final UserService userService;
     @Value("{security.jwt.token.secret-key:secret-value}")
     private String secretKey;
-
-    private final UserService userService;
 
     @PostConstruct
     protected void init() {
@@ -34,19 +34,20 @@ public class UserAuthProvider {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3_600_000);
         return JWT.create()
-                .withIssuer(username)
+                .withSubject(username)
+                .withIssuer("backend")
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
                 .sign(Algorithm.HMAC256(secretKey));
     }
 
-    public Authentication validateToken(String token){
+    public Authentication validateToken(String token) {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey))
                 .build();
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = userService.findByUsername(decoded.getIssuer());
+        UserDto user = userService.findByUsername(decoded.getSubject());
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
 }

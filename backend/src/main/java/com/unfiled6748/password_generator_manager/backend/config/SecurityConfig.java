@@ -17,12 +17,14 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     private final UserAuthenticationEntryPoint userAuthenticationEntryPoint;
     private final UserAuthProvider userAuthProvider;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http

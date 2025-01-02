@@ -18,6 +18,7 @@ import java.net.URI;
 public class AuthController {
     private final UserService userService;
     private final UserAuthProvider userAuthProvider;
+
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
         UserDto userDto = userService.login(credentialsDto);

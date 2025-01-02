@@ -10,9 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserAuthProvider userAuthProvider;
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
